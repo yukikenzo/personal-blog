@@ -13,7 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $firstPost = Post::findOrFail(1);
+        $posts = Post::all();
+        return view('welcome', compact('firstPost', 'posts'));
     }
 
     /**
@@ -45,7 +47,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**

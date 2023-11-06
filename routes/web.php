@@ -5,14 +5,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'index'])->name('post.index');
 
-Route::view('/post', 'posts.post');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/create_post', [PostController::class, 'create'])->name('post.create');
-
 Route::post('/store_post', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/dashboard', function () {
