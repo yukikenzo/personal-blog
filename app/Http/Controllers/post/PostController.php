@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\post;
 
 use App\Http\Controllers\Controller;
+use App\Models\posts\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,7 +29,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $post = new Post();
+
+       $post->titulo = $request->input('titulo');
+       $post->tema = $request->input('tema');
+       $post->descricao = $request->input('descricao');
+
+       $post->save();
+
+        return redirect('/');
     }
 
     /**

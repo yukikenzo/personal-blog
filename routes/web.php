@@ -13,6 +13,8 @@ Route::view('/post', 'posts.post');
 
 Route::get('/create_post', [PostController::class, 'create'])->name('post.create');
 
+Route::post('/store_post', [PostController::class, 'store'])->name('post.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
