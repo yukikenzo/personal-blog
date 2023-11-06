@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\post\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,7 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/post', 'post');
+Route::view('/post', 'posts.post');
+
+Route::get('/create_post', [PostController::class, 'create'])->name('post.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
