@@ -49,7 +49,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('posts.show', compact('post'));
+        return view('posts.post', compact('post'));
     }
 
     /**
