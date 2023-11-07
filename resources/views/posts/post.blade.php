@@ -85,6 +85,12 @@
 
 
                 <!--/ Post Content-->
+                <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-red-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-red-400">Deletar</button>
+                </form>
+                <a href="{{ route('post.edit', $post->id) }}" class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-blue-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-blue-400">Editar</a>
 
             </div>
 

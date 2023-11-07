@@ -12,6 +12,13 @@ Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::get('/create_post', [PostController::class, 'create'])->name('post.create');
 Route::post('/store_post', [PostController::class, 'store'])->name('post.store');
 
+Route::get('/edit_post/{id}', [PostController::class, 'edit'])->name('post.edit');
+Route::put('/update_post/{id}', [PostController::class, 'update'])->name('post.update');
+
+
+Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -13,8 +13,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $firstPost = Post::findOrFail(1);
-        $posts = Post::all();
+        $firstPost = Post::all()->first()->toArray();
+        $posts = Post::all()->toArray();
+
+        $key = array_search($firstPost, $posts);
+        unset($posts[$key]);
+
         return view('welcome', compact('firstPost', 'posts'));
     }
 
@@ -57,7 +61,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -65,7 +70,15 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->titulo = $request->input('titulo');
+        $post->tema = $request->input('tema');
+        $post->descricao = $request->input('descricao');
+
+        $post->update();
+
+         return redirect('/');
     }
 
     /**
@@ -73,6 +86,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Post::findOrFail($id)->delete();
+
+        return redirect('/');
     }
 }
