@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\post\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::put('/update_post/{id}', [PostController::class, 'update'])->name('post.u
 Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
 Route::view('/about', 'posts.about');
+
+
+Route::resource('/categoria', CategoriaController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

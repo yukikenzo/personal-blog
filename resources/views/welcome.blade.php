@@ -70,6 +70,10 @@
                             </li>
                             <li class="mr-2">
                                 <a class="inline-block py-2 px-2 text-white no-underline hover:underline"
+                                    href="{{ route('categoria.index') }}">CATEGORIAS</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="inline-block py-2 px-2 text-white no-underline hover:underline"
                                     href="/about">ABOUT</a>
                             </li>
                         </ul>
