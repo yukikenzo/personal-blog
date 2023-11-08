@@ -18,6 +18,7 @@ Route::put('/update_post/{id}', [PostController::class, 'update'])->name('post.u
 
 Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
+Route::view('/about', 'posts.about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
