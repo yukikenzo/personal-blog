@@ -48,7 +48,9 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+        return view('posts.editCategoria', compact('categoria'));
     }
 
     /**
@@ -56,7 +58,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->update($request->except('_token'));
+
+        return redirect()->route('categoria.index');
     }
 
     /**
@@ -64,6 +70,8 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Categoria::destroy($id);
+
+        return redirect()->route('categoria.index');
     }
 }
