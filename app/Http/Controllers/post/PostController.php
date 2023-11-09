@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\posts\Post;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $firstPost = Post::all()->first()->toArray();
+        $firstPost = Post::all()->first();
         $posts = Post::all()->toArray();
 
         $key = array_search($firstPost, $posts);
@@ -27,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categorias = Categoria::orderBy('nome')->get();
+
+        return view('posts.create', compact('categorias'));
     }
 
     /**
@@ -35,13 +38,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       $post = new Post();
+        $post = new Post();
 
-       $post->titulo = $request->input('titulo');
-       $post->tema = $request->input('tema');
-       $post->descricao = $request->input('descricao');
+        $post->titulo = $request->input('titulo');
+        $post->descricao = $request->input('descricao');
+        $post->categoria_id = $request->input('categoria_id');
 
-       $post->save();
+        $post->save();
 
         return redirect('/');
     }
@@ -78,7 +81,7 @@ class PostController extends Controller
 
         $post->update();
 
-         return redirect('/');
+        return redirect('/');
     }
 
     /**
