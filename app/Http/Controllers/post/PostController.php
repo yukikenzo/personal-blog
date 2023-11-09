@@ -56,7 +56,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('posts.post', compact('post'));
+        $posts = Post::where('categoria_id', '=', $post->categoria_id)->where('id', '<>', $post->id)->get();
+
+        return view('posts.post', compact('post', 'posts'));
     }
 
     /**
