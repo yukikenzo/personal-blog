@@ -46,8 +46,7 @@
 
     <!--Title-->
     <div class="text-center pt-16 md:pt-32">
-        <p class="text-sm md:text-base text-green-500 font-bold">04 JULY 2023 <span class="text-gray-900">/</span> GETTING
-            STARTED</p>
+        <p class="text-sm md:text-base text-green-500 font-bold">{{ $post->created_at }}<span class="text-gray-900">/</span>{{ $post->categoria->nome }}</p>
         <h1 class="font-bold break-normal text-3xl md:text-5xl">{{ $post->titulo }}</h1>
     </div>
 
@@ -162,7 +161,7 @@
                             <img src="https://source.unsplash.com/_AjqGGafofE/400x200"
                                 class="h-48 w-full rounded-t shadow-lg">
                             <div class="p-6 h-auto md:h-48">
-                                <p class="text-gray-600 text-xs md:text-sm">GETTING STARTED</p>
+                                <p class="text-gray-600 text-xs md:text-sm">{{ $post->categoria->nome }}</p>
                                 <div class="font-bold text-xl text-gray-900">{{ $post->titulo }}</div>
                                 <p class="text-gray-800 font-serif text-base mb-5">
                                    {{ $post->descricao }}

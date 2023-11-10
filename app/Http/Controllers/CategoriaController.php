@@ -14,6 +14,9 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::orderBy('nome')->get();
+        // foreach ($categorias as $categoria) {
+        //     dd($categoria->posts);
+        // }
         return view('posts.categoria', compact('categorias'));
     }
 

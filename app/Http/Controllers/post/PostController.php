@@ -15,10 +15,13 @@ class PostController extends Controller
     public function index()
     {
         $firstPost = Post::all()->first();
-        $posts = Post::all()->toArray();
+        $posts = Post::where('id', '<>', $firstPost->id)->get();
 
-        $key = array_search($firstPost, $posts);
-        unset($posts[$key]);
+        foreach($posts as $post) {
+            $post->categoria = $post->categoria->nome;
+        }
+
+        $firstPost->categoria = $firstPost->categoria->nome;
 
         return view('welcome', compact('firstPost', 'posts'));
     }
