@@ -17,12 +17,6 @@ class PostController extends Controller
         $firstPost = Post::all()->first();
         $posts = Post::where('id', '<>', $firstPost->id)->get();
 
-        foreach($posts as $post) {
-            $post->categoria = $post->categoria->nome;
-        }
-
-        $firstPost->categoria = $firstPost->categoria->nome;
-
         return view('welcome', compact('firstPost', 'posts'));
     }
 
