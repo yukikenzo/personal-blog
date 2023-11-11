@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Models\Categoria;
 use App\Models\posts\Post;
 use Illuminate\Http\Request;
@@ -33,9 +34,19 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $post = new Post();
+
+        if ($request->image) {
+
+
+            $post->image = $request->image->store('posts');
+
+            // $extension = $request->image->getClientOriginalExtension();
+
+            // $post->image = $request->image->storeAs('posts', now().".{$extension}");
+        }
 
         $post->titulo = $request->input('titulo');
         $post->descricao = $request->input('descricao');
@@ -64,7 +75,8 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.edit', compact('post'));
+        $categorias = Categoria::orderBy('nome')->get();
+        return view('posts.edit', compact('post', 'categorias'));
     }
 
     /**

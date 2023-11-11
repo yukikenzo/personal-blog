@@ -46,147 +46,158 @@
 
     <!--Title-->
     <div class="text-center pt-16 md:pt-32">
-        <p class="text-sm md:text-base text-green-500 font-bold">{{ $post->created_at }}<span class="text-gray-900">/</span>{{ $post->categoria->nome }}</p>
+        <p class="text-sm md:text-base text-green-500 font-bold">{{ $post->created_at }}<span
+                class="text-gray-900">/</span>{{ $post->categoria->nome }}</p>
         <h1 class="font-bold break-normal text-3xl md:text-5xl">{{ $post->titulo }}</h1>
     </div>
 
     <!--image-->
-    <div class="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"
-        style="background-image:url('https://source.unsplash.com/collection/1118905/'); height: 75vh;"></div>
 
-    <!--Container-->
-    <div class="container max-w-5xl mx-auto -mt-32">
+    @if ($post->image)
+        <div class="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"
+            style="background-image:url('{{ url('storage/' . $post->image) }}'); height: 75vh;"></div>
+    @else
+        <div class="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded"
+            style="background-image:url('https://source.unsplash.com/collection/1118905/'); height: 75vh;"></div>
+    @endif
 
-        <div class="mx-0 sm:mx-6">
+        <!--Container-->
+        <div class="container max-w-5xl mx-auto -mt-32">
 
-            <div class="bg-white w-full p-8 md:p-24 text-xl md:text-2xl text-gray-800 leading-normal"
-                style="font-family:Georgia,serif;">
+            <div class="mx-0 sm:mx-6">
 
-                <!--Post Content-->
+                <div class="bg-white w-full p-8 md:p-24 text-xl md:text-2xl text-gray-800 leading-normal"
+                    style="font-family:Georgia,serif;">
 
-
-                <!--Lead Para-->
-                <p class="text-2xl md:text-3xl mb-5">
-                    👋 Welcome fellow <a class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                        href="https://www.tailwindcss.com">Tailwind CSS</a> and <a
-                        class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                        href="https://www.ghost.org">Ghost</a> fan. This starter template is an attempt to replicate the
-                    default Ghost theme <a
-                        class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                        href="https://demo.ghost.io/welcome">"Casper"</a> using Tailwind CSS and vanilla Javascript.
-                </p>
-
-                <p class="py-6">{{ $post->descricao }}</p>
-
-                <blockquote class="border-l-4 border-green-500 italic my-8 pl-8 md:pl-12">Example of blockquote - Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet
-                    ligula.</blockquote>
+                    <!--Post Content-->
 
 
-                <!--/ Post Content-->
-                <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-red-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-red-400">Deletar</button>
-                </form>
-                <a href="{{ route('post.edit', $post->id) }}" class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-blue-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-blue-400">Editar</a>
-
-            </div>
-
-
-            <!--Subscribe-->
-            <div class="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
-                <h2 class="font-bold break-normal text-2xl md:text-4xl">Subscribe to Ghostwind CSS</h2>
-                <h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Get the latest posts
-                    delivered right to your inbox</h3>
-                <div class="w-full text-center pt-4">
-                    <form action="#">
-                        <div class="max-w-sm mx-auto p-1 pr-0 flex flex-wrap items-center">
-                            <input type="email" placeholder="youremail@example.com"
-                                class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none">
-                            <button type="submit"
-                                class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /Subscribe-->
-
-
-            <!--Author-->
-            <div class="flex w-full items-center font-sans p-8 md:p-24">
-                <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-                <div class="flex-1">
-                    <p class="text-base font-bold text-base md:text-xl leading-none">Ghostwind CSS</p>
-                    <p class="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a
+                    <!--Lead Para-->
+                    <p class="text-2xl md:text-3xl mb-5">
+                        👋 Welcome fellow <a
                             class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                            href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
-                </div>
-                <div class="justify-end">
+                            href="https://www.tailwindcss.com">Tailwind CSS</a> and <a
+                            class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
+                            href="https://www.ghost.org">Ghost</a> fan. This starter template is an attempt to replicate the
+                        default Ghost theme <a
+                            class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
+                            href="https://demo.ghost.io/welcome">"Casper"</a> using Tailwind CSS and vanilla Javascript.
+                    </p>
+
+                    <p class="py-6">{{ $post->descricao }}</p>
+
+                    <blockquote class="border-l-4 border-green-500 italic my-8 pl-8 md:pl-12">Example of blockquote - Lorem
+                        ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit
+                        amet
+                        ligula.</blockquote>
+
+
+                    <!--/ Post Content-->
+                    <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button
+                            class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-red-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-red-400">Deletar</button>
+                    </form>
+                    <a href="{{ route('post.edit', $post->id) }}"
+                        class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-blue-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-blue-400">Editar</a>
 
                 </div>
-                <!--/Author-->
-
-            </div>
 
 
-        </div>
-
-    </div>
-
-
-    <!--   Scroll Top Button  -->
-    <button class="btn-toggle-round scroll-top js-scroll-top" type="button" title="Scroll to top">
-        <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="24" height="24"
-            viewBox="0 0 24 24" stroke-width="1.5" stroke="cuurentColor" fill="none" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="18" y1="11" x2="12" y2="5" />
-            <line x1="6" y1="11" x2="12" y2="5" />
-        </svg>
-    </button>
-
-    <div class="bg-gray-200">
-
-        <div class="container w-full max-w-6xl mx-auto px-2 py-8">
-            <div class="flex flex-wrap -mx-2">
-                @foreach($posts as $post)
-                <div class="w-full md:w-1/3 px-2 pb-12">
-                    <div class="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
-                        <a href="{{ route('post.show', $post->id) }}" class="no-underline hover:no-underline">
-                            <img src="https://source.unsplash.com/_AjqGGafofE/400x200"
-                                class="h-48 w-full rounded-t shadow-lg">
-                            <div class="p-6 h-auto md:h-48">
-                                <p class="text-gray-600 text-xs md:text-sm">{{ $post->categoria->nome }}</p>
-                                <div class="font-bold text-xl text-gray-900">{{ $post->titulo }}</div>
-                                <p class="text-gray-800 font-serif text-base mb-5">
-                                   {{ $post->descricao }}
-                                </p>
+                <!--Subscribe-->
+                <div class="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
+                    <h2 class="font-bold break-normal text-2xl md:text-4xl">Subscribe to Ghostwind CSS</h2>
+                    <h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Get the latest posts
+                        delivered right to your inbox</h3>
+                    <div class="w-full text-center pt-4">
+                        <form action="#">
+                            <div class="max-w-sm mx-auto p-1 pr-0 flex flex-wrap items-center">
+                                <input type="email" placeholder="youremail@example.com"
+                                    class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none">
+                                <button type="submit"
+                                    class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400">Subscribe</button>
                             </div>
-                            <div class="flex items-center justify-between inset-x-0 bottom-0 p-6">
-                                <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
-                                    alt="Avatar of Author">
-                                <p class="text-gray-600 text-xs md:text-sm">2 MIN READ</p>
-                            </div>
-                        </a>
+                        </form>
                     </div>
                 </div>
-                @endforeach
+                <!-- /Subscribe-->
+
+
+                <!--Author-->
+                <div class="flex w-full items-center font-sans p-8 md:p-24">
+                    <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                    <div class="flex-1">
+                        <p class="text-base font-bold text-base md:text-xl leading-none">Ghostwind CSS</p>
+                        <p class="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a
+                                class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
+                                href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
+                    </div>
+                    <div class="justify-end">
+
+                    </div>
+                    <!--/Author-->
+
+                </div>
+
+
             </div>
+
         </div>
 
 
-    </div>
-@endsection
+        <!--   Scroll Top Button  -->
+        <button class="btn-toggle-round scroll-top js-scroll-top" type="button" title="Scroll to top">
+            <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="cuurentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="18" y1="11" x2="12" y2="5" />
+                <line x1="6" y1="11" x2="12" y2="5" />
+            </svg>
+        </button>
 
-@section('footer')
-    @include('posts.components.footer')
-@endsection
+        <div class="bg-gray-200">
 
-</body>
+            <div class="container w-full max-w-6xl mx-auto px-2 py-8">
+                <div class="flex flex-wrap -mx-2">
+                    @foreach ($posts as $post)
+                        <div class="w-full md:w-1/3 px-2 pb-12">
+                            <div class="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
+                                <a href="{{ route('post.show', $post->id) }}" class="no-underline hover:no-underline">
+                                    <img src="https://source.unsplash.com/_AjqGGafofE/400x200"
+                                        class="h-48 w-full rounded-t shadow-lg">
+                                    <div class="p-6 h-auto md:h-48">
+                                        <p class="text-gray-600 text-xs md:text-sm">{{ $post->categoria->nome }}</p>
+                                        <div class="font-bold text-xl text-gray-900">{{ $post->titulo }}</div>
+                                        <p class="text-gray-800 font-serif text-base mb-5">
+                                            {{ $post->descricao }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between inset-x-0 bottom-0 p-6">
+                                        <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
+                                            alt="Avatar of Author">
+                                        <p class="text-gray-600 text-xs md:text-sm">2 MIN READ</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
-</html>
+
+        </div>
+    @endsection
+
+    @section('footer')
+        @include('posts.components.footer')
+    @endsection
+
+    </body>
+
+    </html>
