@@ -82,13 +82,22 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, string $id)
     {
         $post = Post::findOrFail($id);
 
         $post->titulo = $request->input('titulo');
-        $post->tema = $request->input('tema');
+        $post->categoria_id = $request->input('categoria_id');
         $post->descricao = $request->input('descricao');
+
+        if ($request->image) {
+
+            if ($post->image) {
+                unlink('storage/' . $post->image);
+            }
+
+            $post->image = $request->image->store('posts');
+        }
 
         $post->update();
 
@@ -100,7 +109,13 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        Post::findOrFail($id)->delete();
+        $post = Post::findOrFail($id);
+
+        if ($post->image) {
+            unlink('storage/' . $post->image);
+        }
+
+        $post->delete();
 
         return redirect('/');
     }
