@@ -51,7 +51,7 @@ class PostController extends Controller
         }
 
         $post->titulo = $request->input('titulo');
-        $post->descricao = $request->input('descricao');
+        $post->descricao = $request->descricao;
         $post->categoria_id = $request->input('categoria_id');
 
         $post->save();
