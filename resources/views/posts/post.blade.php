@@ -74,17 +74,10 @@
 
                     <!--Lead Para-->
                     <p class="text-2xl md:text-3xl mb-5">
-                        👋 Welcome fellow <a
-                            class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                            href="https://www.tailwindcss.com">Tailwind CSS</a> and <a
-                            class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                            href="https://www.ghost.org">Ghost</a> fan. This starter template is an attempt to replicate the
-                        default Ghost theme <a
-                            class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-                            href="https://demo.ghost.io/welcome">"Casper"</a> using Tailwind CSS and vanilla Javascript.
+                        {{ $post->descricao }}
                     </p>
 
-                    <p class="py-6">{{ $post->descricao }}</p>
+                    {{-- <p class="py-6">{{ $post->descricao }}</p> --}}
 
                     <blockquote class="border-l-4 border-green-500 italic my-8 pl-8 md:pl-12">Example of blockquote - Lorem
                         ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit

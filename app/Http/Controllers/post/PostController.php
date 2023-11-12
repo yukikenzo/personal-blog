@@ -15,10 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $firstPost = Post::all()->first();
-        $posts = Post::where('id', '<>', $firstPost->id)->get();
+        if ($firstPost = Post::all()->first()) {
+            $posts = Post::where('id', '<>', $firstPost->id)->get();
+            return view('welcome', compact('firstPost', 'posts'));
+        }
 
-        return view('welcome', compact('firstPost', 'posts'));
+        return view('welcome');
     }
 
     /**
