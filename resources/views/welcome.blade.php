@@ -117,7 +117,7 @@
                             <p class="w-full text-gray-600 text-xs md:text-sm pt-6 px-6">{{ $firstPost['categoria']->nome }}</p>
                             <div class="w-full font-bold text-xl text-gray-900 px-6">{{ $firstPost['titulo'] }}</div>
                             <p class="text-gray-800 font-serif text-base px-6 mb-5">
-                                {{ $firstPost['descricao'] }}
+                                {{ $firstPost['descricao[0]'] }}
                             </p>
                         </div>
 
@@ -149,7 +149,7 @@
                                     <div class="w-full font-bold text-xl text-gray-900 px-6">{{ $post['titulo'] }}
                                     </div>
                                     <p class="text-gray-800 font-serif text-base px-6 mb-5">
-                                        {{ $post['descricao'] }}
+                                        {{ $post['descricao[0]'] }}
                                     </p>
                                 </a>
                             </div>

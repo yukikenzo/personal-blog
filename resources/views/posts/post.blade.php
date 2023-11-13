@@ -73,9 +73,11 @@
 
 
                     <!--Lead Para-->
-                    <p class="text-2xl md:text-3xl mb-5">
-                        {{ $post->descricao }}
-                    </p>
+                  @foreach ($post->descricao as $paragrafo)
+                  <p class="text-2xl md:text-3xl mb-5">
+                    {{ $paragrafo }}
+                </p>
+                  @endforeach
 
                     {{-- <p class="py-6">{{ $post->descricao }}</p> --}}
 
@@ -168,7 +170,7 @@
                                         <p class="text-gray-600 text-xs md:text-sm">{{ $post->categoria->nome }}</p>
                                         <div class="font-bold text-xl text-gray-900">{{ $post->titulo }}</div>
                                         <p class="text-gray-800 font-serif text-base mb-5">
-                                            {{ $post->descricao }}
+                                            {{ $post->descricao[0] }}
                                         </p>
                                     </div>
                                     <div class="flex items-center justify-between inset-x-0 bottom-0 p-6">

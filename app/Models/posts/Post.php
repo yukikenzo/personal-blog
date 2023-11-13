@@ -10,6 +10,10 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'descricao' => 'array',
+    ];
+
     public function categoria() {
         return $this->belongsTo(Categoria::class);
     }
